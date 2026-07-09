@@ -1,6 +1,11 @@
 # Obsidian Jekyll Starter 中文说明
 
-这是一个 Obsidian-first 的 Jekyll 博客模板，目标是让写作源文件保持 Markdown 友好，同时用 GitHub Actions 自动发布到 GitHub Pages。
+这是一个 Obsidian-first 的 Jekyll 博客模板，为想要「一份 Markdown 源文件」的写作者准备：
+
+- 在 Obsidian 中写文章；
+- 源文件用 Git 管理；
+- 用 GitHub Actions 构建并部署；
+- 图片、callout、可运行代码都采用纯 Markdown 友好的写法。
 
 ## 快速开始
 
