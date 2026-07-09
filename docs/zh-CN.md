@@ -70,6 +70,8 @@ _posts/hello-world/cover.svg
 
 ## Obsidian 友好的增强语法
 
+模板预先集成了两个内容插件：`runcode` 把代码块变成可在浏览器中直接运行 HTML 的运行框，`pin`/`card` 把 callout 变成用于展示短句、诗词的样式卡片。两者都用纯 Markdown 语法书写，在 Obsidian 里保持原生可读——转换只发生在构建阶段。
+
 可运行代码使用普通 fenced code block：
 
 ````markdown

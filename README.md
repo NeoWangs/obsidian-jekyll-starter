@@ -77,6 +77,8 @@ During the Jekyll build, the asset is published under the final post URL.
 
 ## Obsidian-Friendly Blocks
 
+The starter ships with two content plugins: `runcode` turns a code block into a box that runs HTML in the browser, and `pin`/`card` turns callouts into styled cards for short notes and poems. Both use plain Markdown syntax, so posts stay perfectly readable inside Obsidian — the transformation only happens at build time.
+
 Runnable code uses a normal fenced code block:
 
 ````markdown
