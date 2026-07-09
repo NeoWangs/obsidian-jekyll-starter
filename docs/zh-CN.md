@@ -4,6 +4,8 @@
 
 ## 快速开始
 
+前置条件：本机需要 Ruby 和 Bundler（用 `ruby -v`、`bundle -v` 确认）。部署工作流使用 Ruby 3.2 构建，本地建议通过 [rbenv](https://github.com/rbenv/rbenv) 或 Homebrew 安装 Ruby 3.x；macOS 自带的系统 Ruby 也可以运行。Ubuntu/Debian 可执行 `sudo apt install ruby-full build-essential`，再 `gem install bundler`。
+
 1. 复制本仓库作为新博客仓库。
 2. 在 Obsidian 中打开 `_posts` 目录作为 vault。
 3. 安装依赖：
@@ -22,6 +24,14 @@
 5. 推送到 GitHub 后，把 Pages 发布源设置为 GitHub Actions。
 
 ## 写文章
+
+可以用自带的 CLI 快速创建文章：
+
+```sh
+bin/obsidian-jekyll new-post my-first-post --title "我的第一篇文章"
+```
+
+命令会生成 `_posts/my-first-post.md`（front matter 已填好）和同名资源目录 `_posts/my-first-post/`，`--category` 可指定分类（默认 `notes`）。
 
 文章放在 `_posts` 里，文件名不需要 Jekyll 默认的日期前缀。发布日期写在 front matter 中：
 

@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "fileutils"
+require "optparse"
+require "yaml"
+
+ROOT = File.expand_path("..", __dir__)
+SLUG_PATTERN = /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/.freeze
+
+# Shells that report a non-UTF-8 locale hand over ARGV as ASCII-8BIT, which
+# makes Psych dump CJK titles as !binary. Reinterpret the raw bytes as UTF-8.
+ARGV.map! { |arg| arg.dup.force_encoding(Encoding::UTF_8) }
+
+def usage
+  <<~TEXT
+    Usage: obsidian-jekyll <command> [options]
+
+    Commands:
+      new-post <slug> [--title TITLE] [--category NAME]
+          Create _posts/<slug>.md and the asset directory _posts/<slug>/.
+  TEXT
+end
+
+def new_post(argv)
+  title = nil
+  category = "notes"
+
+  parser = OptionParser.new do |opts|
+    opts.banner = "Usage: obsidian-jekyll new-post <slug> [options]"
+    opts.on("--title TITLE", "Post title (defaults to the slug)") { |value| title = value }
+    opts.on("--category NAME", "Category (defaults to notes)") { |value| category = value }
+  end
+
+  begin
+    parser.parse!(argv)
+  rescue OptionParser::ParseError => error
+    abort("#{error.message}\n\n#{parser}")
+  end
+
+  slug = argv.shift
+  abort(parser.to_s) if slug.nil? || !argv.empty?
+
+  unless slug.match?(SLUG_PATTERN)
+    abort("Invalid slug #{slug.inspect}: use lowercase letters, digits, and hyphens (e.g. my-first-post).")
+  end
+
+  post_path = File.join(ROOT, "_posts", "#{slug}.md")
+  abort("#{relative(post_path)} already exists.") if File.exist?(post_path)
+
+  front_matter = {
+    "title" => title || slug,
+    "date" => Time.now.strftime("%Y-%m-%d %H:%M:%S %z"),
+    "category" => category,
+    "categories" => [category],
+    "tags" => []
+  }
+
+  asset_dir = File.join(ROOT, "_posts", slug)
+  FileUtils.mkdir_p(asset_dir)
+  File.write(post_path, "#{YAML.dump(front_matter)}---\n\n")
+
+  puts "Created #{relative(post_path)}"
+  puts "Assets  #{relative(asset_dir)}/"
+end
+
+def relative(path)
+  path.delete_prefix("#{Dir.pwd}/")
+end
+
+command = ARGV.shift
+case command
+when "new-post"
+  new_post(ARGV)
+else
+  warn usage
+  exit 1
+end

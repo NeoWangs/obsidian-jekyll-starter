@@ -11,6 +11,8 @@ Chinese guide: [docs/zh-CN.md](docs/zh-CN.md)
 
 ## Quick Start
 
+Prerequisites: Ruby with Bundler (`ruby -v`, `bundle -v`). The deploy workflow builds with Ruby 3.2, so a local Ruby 3.x via [rbenv](https://github.com/rbenv/rbenv) or Homebrew is recommended; the preinstalled macOS system Ruby also works. On Ubuntu/Debian: `sudo apt install ruby-full build-essential`, then `gem install bundler`.
+
 1. Copy this directory into a new repository.
 2. Open `_posts` as an Obsidian vault.
 3. Install dependencies:
@@ -29,6 +31,14 @@ Chinese guide: [docs/zh-CN.md](docs/zh-CN.md)
 5. Push to GitHub and set Pages to deploy from GitHub Actions.
 
 ## Writing Posts
+
+Scaffold a post with the bundled CLI:
+
+```sh
+bin/obsidian-jekyll new-post my-first-post --title "My First Post"
+```
+
+This creates `_posts/my-first-post.md` with ready-to-edit front matter plus the asset directory `_posts/my-first-post/`. Use `--category` to pick a category (defaults to `notes`).
 
 Posts live in `_posts`, but filenames do not need the usual Jekyll date prefix. Put the publish date in front matter instead:
 
