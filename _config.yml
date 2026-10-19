@@ -36,6 +36,7 @@ exclude:
 obsidian_jekyll:
   default_theme: light
   mathjax: true
+  mermaid: true
   categories:
     - name: notes
       title: Notes

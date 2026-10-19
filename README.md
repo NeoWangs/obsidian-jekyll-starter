@@ -101,6 +101,22 @@ Cards use Obsidian callouts:
 
 `[!pin]` and `[!poem]` are aliases for `[!card]`.
 
+## Mermaid Diagrams
+
+Standard `mermaid` fences render as SVG with [Pele](https://github.com/obsidianmd/pele), while remaining previewable in Obsidian:
+
+````markdown
+```mermaid
+flowchart LR
+  A[Write in Obsidian] --> B[Commit to Git]
+  B --> C[Publish with Jekyll]
+```
+````
+
+Mermaid support is enabled by default. Set `obsidian_jekyll.mermaid: false` in `_config.yml` to display source code instead. Pages with diagrams load the pinned Pele 1.6.0 browser bundle from jsDelivr; no Node.js build step is needed. Diagrams follow the site's light/dark theme and adapt to the container width. If the CDN is unavailable or a diagram cannot be parsed, its source stays visible and other diagrams can still render. JavaScript must be enabled to render diagrams.
+
+Pele uses its own layout and styling; see its [compatibility notes](https://pele.run/compatibility) for differences from Mermaid. Examples are included in the Hello World post.
+
 ## Repository Shape
 
 ```text
@@ -121,6 +137,7 @@ Edit `_config.yml` first:
 - `title`, `description`, `author`, `url`, `baseurl`;
 - `obsidian_jekyll.categories`;
 - `obsidian_jekyll.mathjax`;
+- `obsidian_jekyll.mermaid`;
 - `obsidian_jekyll.default_theme`.
 
 The starter intentionally keeps the theme small. Replace the layouts and CSS freely while keeping the `_plugins` folder if you want to preserve the Obsidian-friendly writing workflow.

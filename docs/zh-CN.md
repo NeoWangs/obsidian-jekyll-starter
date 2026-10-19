@@ -99,6 +99,22 @@ _posts/hello-world/cover.svg
 
 `[!pin]` 和 `[!poem]` 也会按卡片处理。
 
+## Mermaid 图表
+
+使用标准的 `mermaid` 代码块，在 Obsidian 中可直接预览，网页通过 [Pele](https://github.com/obsidianmd/pele) 渲染为 SVG：
+
+````markdown
+```mermaid
+flowchart LR
+  A[在 Obsidian 写作] --> B[提交到 Git]
+  B --> C[用 Jekyll 发布]
+```
+````
+
+默认启用，可在 `_config.yml` 中设置 `obsidian_jekyll.mermaid: false` 关闭并显示源码。仅包含图表的页面会从 jsDelivr 加载固定版本的 Pele 1.6.0，无需增加 Node.js 构建步骤。图表跟随站点的明暗主题切换，并适应容器宽度。CDN 加载失败或图表语法无法解析时，保留对应源码，不影响其他图表渲染；浏览器禁用 JavaScript 时也会显示源码。
+
+Pele 有自己的布局和视觉样式，与 Mermaid 的差异请参阅[兼容性说明](https://pele.run/compatibility)。Hello World 示例文章中包含流程图和时序图。
+
 ## 这个模板抽象了什么
 
 - `_posts` 直接作为 Obsidian vault。
@@ -106,6 +122,7 @@ _posts/hello-world/cover.svg
 - 文章同名素材目录会自动发布到文章 URL 下。
 - 带有 `runcode` 标记的代码块会转换成网页运行框。
 - `[!card]`、`[!pin]`、`[!poem]` 会转换成网页卡片。
+- `mermaid` 代码块通过 Pele 渲染成支持明暗主题的图表。
 - 标签页和分类页自动生成。
 - GitHub Actions 使用 Pages artifact 部署。
 

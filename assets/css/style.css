@@ -322,6 +322,34 @@ h1 {
   border-radius: 4px;
 }
 
+.oj-mermaid {
+  --pele-bg: var(--panel);
+  --pele-fg: var(--text);
+  --pele-muted: var(--muted);
+  --pele-line: var(--text);
+  --pele-surface: var(--panel-soft);
+  --pele-surface-alt: var(--code-bg);
+  --pele-border: var(--line);
+  --pele-accent: var(--accent);
+  --pele-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 0 28px;
+  padding: 16px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  line-height: normal;
+}
+
+.oj-mermaid > svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
 .post-content table {
   width: 100%;
   border-collapse: collapse;

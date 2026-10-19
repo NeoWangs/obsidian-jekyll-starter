@@ -52,6 +52,25 @@ Obsidian can preview the relative path, and Jekyll publishes it under this post'
 </html>
 ```
 
+## Mermaid Diagrams
+
+Use a standard Mermaid code block to preview diagrams in both Obsidian and the blog:
+
+```mermaid
+flowchart LR
+  A[Write in Obsidian] --> B[Commit to Git]
+  B --> C[Build with Jekyll]
+  C --> D[Publish on GitHub Pages]
+```
+
+```mermaid
+sequenceDiagram
+  participant Author
+  participant Blog
+  Author->>Blog: Publish a Markdown post
+  Blog-->>Author: Display the diagram
+```
+
 ## Math
 
 Inline math works when `obsidian_jekyll.mathjax` is enabled: $e^{i\pi} + 1 = 0$.
